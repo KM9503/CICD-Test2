@@ -17,17 +17,29 @@ import java.util.concurrent.TimeUnit;
 public class LaunchClass {
 
     public static WebDriver driver;
+    public static final String username = "kailasmore_Ey1d85";
+    public static final String accessKey = "9d9z2WezafunKPfRmSBh";
+    public static final String URL = "http://" + username + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub";
 
     @BeforeMethod
     public void LaunchDriver() throws MalformedURLException {
-        DesiredCapabilities dr = null;
-        dr = DesiredCapabilities.chrome();
-        dr.setBrowserName("chrome");
-        dr.setPlatform(Platform.ANY);
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Kailas More\\Desktop\\Chrome driver\\chromedriver-win32\\chromedriver-win32\\chromedriver.exe");
+//        DesiredCapabilities dr = null;
+//        dr = DesiredCapabilities.chrome();
+//        dr.setBrowserName("chrome");
+//        dr.setPlatform(Platform.ANY);
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Kailas More\\Desktop\\Chrome driver\\chromedriver-win32\\chromedriver-win32\\chromedriver.exe");
 //        WebDriverManager.chromedriver().setup();
 //        driver = new ChromeDriver();
-        driver = new RemoteWebDriver(new URL("http://192.168.84.1:4444/wd/hub"), dr);
+//        driver = new RemoteWebDriver(new URL("http://192.168.84.1:4444/wd/hub"), dr);
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("broswer", "Chrome");
+        caps.setCapability("browserVersion", "latest");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("osVersion", "10");
+//        caps.setCapability("resolution", "1024*768");
+
+        driver = new RemoteWebDriver(new URL(URL), caps);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().fullscreen();
     }
