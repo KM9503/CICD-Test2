@@ -53,7 +53,7 @@ public class LaunchClass {
 
     @AfterMethod
     public void Quite() {
-        driver.close();;
+        driver.quit();
     }
 
 }
